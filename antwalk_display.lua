@@ -24,7 +24,7 @@ for tick=1,NUMBER_OF_ITERATIONS do
     for i=-10,10 do
       local character = '-'
 
-      if board[i] and board[i][j] then
+      if board[i .. ',' .. j] then
         character = 'X'
       end
 
