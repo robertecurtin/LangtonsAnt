@@ -1,15 +1,31 @@
-local function move_in_current_direction(board)
-  local direction =
+  local left =
     {
-      [0] = {x=0, y=1},  --North
-      [1] = {x=1, y=0},  --East
-      [2] = {x=0, y=-1}, --South
-      [3] = {x=-1, y=0}  --West
+      north = 'west',
+      west = 'south',
+      south = 'east',
+      east = 'north'
     }
 
-  direction = direction[board.direction]
-  board.location.x = board.location.x + direction.x
-  board.location.y = board.location.y + direction.y
+  local right =
+    {
+      north = 'east',
+      west = 'north',
+      south = 'west',
+      east = 'south'
+    }
+
+  local direction =
+  {
+    north = {x = 0, y = 1},
+    west = {x = -1, y = 0},
+    south = {x = 0, y = -1},
+    east = {x = 1, y = 0}
+  }
+
+local function move_in_current_direction(board)
+  movement = direction[board.direction]
+  board.location.x = board.location.x + movement.x
+  board.location.y = board.location.y + movement.y
   return board
 end
 
@@ -40,14 +56,12 @@ local function flip_current_space(board)
 end
 
 local function move_left(board)
-  board.direction = board.direction - 1
-  if board.direction < 0 then board.direction = 3 end
+  board.direction = left[board.direction]
   return move_in_current_direction(board)
 end
 
 local function move_right(board)
-  board.direction = board.direction + 1
-  if board.direction > 3 then board.direction = 0 end
+  board.direction = right[board.direction]
   return move_in_current_direction(board)
 end
 

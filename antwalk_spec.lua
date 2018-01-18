@@ -1,93 +1,74 @@
 local AntWalk = require('antwalk')
-local Compass = require('compass')
 
 describe('walk', function()
 
     it('should move right on an empty board', function()
       local board = {
         location = {x=0, y=0},
-        direction = Compass.NORTH
+        direction = 'north'
       }
-      board = AntWalk(board)
-      local result = board.location
-      local expected = {x=1, y=0}
-      assert.are.same(expected, result)
 
-      result = board.direction
-      expected = Compass.EAST
-      assert.are.same(expected, result)
+      board = AntWalk(board)
+      assert.are.same({x=1, y=0}, board.location)
+      assert.are.same('east', board.direction)
     end)
 
     it('should move left on an active space', function()
       local board = {
         location = {x=0, y=0},
-        direction = Compass.NORTH,
+        direction = 'north',
         [0] = {[0] = 1}
       }
-      board = AntWalk(board)
-      local result = board.location
-      local expected = {x=-1, y=0}
-      assert.are.same(expected, result)
 
-      result = board.direction
-      expected = Compass.WEST
-      assert.are.same(expected, result)
+      board = AntWalk(board)
+      assert.are.same({x=-1, y=0},  board.location)
+      assert.are.same('west', board.direction)
     end)
 
     it('should move right twice on an empty board', function()
       local board = {
         location = {x=0, y=0},
-        direction = Compass.NORTH
+        direction = 'north'
       }
-      board = AntWalk(board)
-      board = AntWalk(board)
-      local result = board.location
-      local expected = {x=1, y=-1}
-      assert.are.same(expected, result)
 
-      result = board.direction
-      expected = Compass.SOUTH
-      assert.are.same(expected, result)
+      board = AntWalk(board)
+      board = AntWalk(board)
+      assert.are.same({x=1, y=-1}, board.location)
+      assert.are.same('south', board.direction)
     end)
 
     it('should move left twice on an empty board', function()
       local board = {
         location = {x=0, y=0},
-        direction = Compass.NORTH,
+        direction = 'north',
         [0] = {[0] = 1},
         [-1] = {[0] = 1}
       }
-      board = AntWalk(board)
-      board = AntWalk(board)
-      local result = board.location
-      local expected = {x=-1, y=-1}
-      assert.are.same(expected, result)
 
-      result = board.direction
-      expected = Compass.SOUTH
-      assert.are.same(expected, result)
+      board = AntWalk(board)
+      board = AntWalk(board)
+      assert.are.same({x=-1, y=-1}, board.location)
+      assert.are.same('south', board.direction)
     end)
 
     it('should flip an inactive space', function()
       local board = {
         location = {x=0, y=0},
-        direction = Compass.NORTH
+        direction = 'north'
       }
+
       board = AntWalk(board)
-      local result = board[0][0]
-      local expected = true
-      assert.are.same(expected, result)
+      assert.are.same(true, board[0][0])
     end)
 
     it('should flip an active space', function()
       local board = {
         location = {x=0, y=0},
-        direction = Compass.NORTH,
+        direction = 'north',
         [0] = {[0] = true}
       }
+
       board = AntWalk(board)
-      local result = board[0][0]
-      local expected = nil
-      assert.are.same(expected, result)
+      assert.are.same(nil, board[0][0])
     end)
 end)

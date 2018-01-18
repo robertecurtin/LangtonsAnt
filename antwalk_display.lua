@@ -1,24 +1,24 @@
 local AntWalk = require('antwalk')
-local Compass = require('compass')
 
-local NUMBER_OF_ITERATIONS = 2000
+local NUMBER_OF_ITERATIONS = 200
 
 local board = {
   location = {x=0, y=0},
-  direction = 0
+  direction = 'north'
 }
 
 local function oriented_character(board)
-  if board.direction == Compass.NORTH then return '^' end
-  if board.direction == Compass.EAST then return '>' end
-  if board.direction == Compass.SOUTH then return 'v' end
-  if board.direction == Compass.WEST then return '<' end
+  if board.direction == 'north' then return '^' end
+  if board.direction == 'east' then return '>' end
+  if board.direction == 'south' then return 'v' end
+  if board.direction == 'west' then return '<' end
 end
 
 for tick=1,NUMBER_OF_ITERATIONS do
   print('')
   print('')
   print('Time = ' .. tick)
+  os.execute('sleep .1')
   for j=10,-10,-1 do
     line = ''
     for i=-10,10 do
