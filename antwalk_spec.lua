@@ -17,7 +17,7 @@ describe('walk', function()
       local board = {
         location = {x=0, y=0},
         direction = 'north',
-        [0] = {[0] = 1}
+        ['0,0'] = true
       }
 
       board = AntWalk(board)
@@ -41,8 +41,8 @@ describe('walk', function()
       local board = {
         location = {x=0, y=0},
         direction = 'north',
-        [0] = {[0] = 1},
-        [-1] = {[0] = 1}
+        ['0,0'] = true,
+        ['-1,0'] = true
       }
 
       board = AntWalk(board)
@@ -58,17 +58,17 @@ describe('walk', function()
       }
 
       board = AntWalk(board)
-      assert.are.same(true, board[0][0])
+      assert.are.same(true, board['0,0'])
     end)
 
     it('should flip an active space', function()
       local board = {
         location = {x=0, y=0},
         direction = 'north',
-        [0] = {[0] = true}
+        ['0.0'] = true
       }
 
       board = AntWalk(board)
-      assert.are.same(nil, board[0][0])
+      assert.are.same(nil, board['0,0'])
     end)
 end)

@@ -30,20 +30,16 @@ local function move_in_current_direction(board)
 end
 
 local function current_space_is_set(board)
-  return board[board.location.x] and board[board.location.x][board.location.y]
+  return board[board.location.x .. ',' .. board.location.y]
 end
 
 local function clear_current_space(board)
-  board[board.location.x][board.location.y] = nil
-  if board[board.location.x] == {} then
-    board[board.location.x] = nil
-  end
+  board[board.location.x .. ',' .. board.location.y] = nil
   return board
 end
 
 local function set_current_space(board)
-  if not board[board.location.x] then board[board.location.x] = {} end
-  board[board.location.x][board.location.y] = true
+  board[board.location.x .. ',' .. board.location.y] = true
   return board
 end
 
