@@ -1,5 +1,5 @@
 local AntWalk = require('antwalk')
-local DisplayGrid = require 'lib/lua-board-display/src/DisplayGrid'
+local DisplayGrid = require 'lib/lua-display-grid/src/DisplayGrid'
 
 local count_x = 16
 local count_y = 12
