@@ -1,0 +1,3 @@
+[submodule "lib/lua-board-display"]
+	path = lib/lua-board-display
+	url = https://github.com/robertecurtin/lua-board-display.git
