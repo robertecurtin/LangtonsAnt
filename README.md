@@ -8,3 +8,6 @@ https://en.wikipedia.org/wiki/Langton%27s_ant
 `antwalk.lua` contains the implementation.
 
 `antwalk_spec.lua` contains the tests.
+
+## Sample ant walk
+![ant walk](antwalk.gif)
